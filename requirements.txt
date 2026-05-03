@@ -1,0 +1,6 @@
+streamlit
+scikit-learn
+sentence-transformers
+pytesseract
+pillow
+nltk
