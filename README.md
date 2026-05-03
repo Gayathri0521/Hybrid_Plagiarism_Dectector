@@ -2,151 +2,176 @@
 
 Implementation of the system described in the paper:
 
-**"Hybrid Multimodal Plagiarism Detection System Integrating Lexical–Semantic Analysis with OCR-Based Image Processing"**
+"Hybrid Multimodal Plagiarism Detection System Integrating Lexical–Semantic Analysis with OCR-Based Image Processing"
 
 ---
 
-# Overview
+## Overview
 
-This project is a Hybrid Multimodal Plagiarism Detection System developed using Python and Streamlit.
+This project presents a Hybrid Multimodal Plagiarism Detection System that combines lexical similarity, semantic similarity, OCR-based extraction, and PDF text processing within a unified framework.
 
-The system detects plagiarism by combining:
-
-- OCR (Optical Character Recognition)
-- TF-IDF Similarity
-- Sentence-BERT Semantic Similarity
-
-The project supports both text-based and image-based documents.
+The system is designed to detect plagiarism in both text-based and image-based academic documents.
 
 ---
 
-# Features
+## Features
 
-- TF-IDF Similarity for direct text matching
-- Sentence-BERT Similarity for semantic/paraphrased detection
-- OCR Support using Tesseract
-- Supports image and text files
-- Hybrid weighted similarity score
-- Interactive Streamlit UI
-- Plagiarism verdict generation
-
----
-
-# Technologies Used
-
-- Python
-- Streamlit
-- Sentence-Transformers
-- Scikit-learn
-- Pytesseract
-- Pillow
-- NLTK
+* TF-IDF Similarity for direct text matching
+* Sentence-BERT Similarity for semantic and paraphrased content detection
+* OCR Support using Tesseract for image files
+* PDF Text Extraction
+* Hybrid Weighted Similarity Scoring
+* Interactive Streamlit User Interface
+* Downloadable Similarity Reports
 
 ---
 
-# Supported Input Formats
+## Live Demo
 
-- `.txt`
-- `.png`
-- `.jpg`
-- `.jpeg`
+[https://hybridplagiarismdetector.streamlit.app/](https://hybridplagiarismdetector.streamlit.app/)
 
 ---
 
-# Project Structure
+## Technologies Used
 
-```text
-Hybrid_Plagiarism_Detector/
+* Python
+* Streamlit
+* Sentence-Transformers
+* Scikit-learn
+* PyMuPDF
+* Pytesseract
+* Pillow
+* NLTK
+
+---
+
+## Supported Input Formats
+
+* .txt
+* .pdf
+* .png
+* .jpg
+* .jpeg
+
+---
+
+## Project Structure
+
+Hybrid-Plagiarism-Detector/
+
 │
 ├── app.py
-├── utils.py
+├── plagiarism_detector.py
 ├── requirements.txt
 ├── README.md
-├── uploads/
 
+---
 
+## System Workflow
 
-Workflow
-User Uploads Files        ↓File Type Detection        ↓OCR Processing (if image)        ↓Text Preprocessing        ↓TF-IDF Similarity        ↓Sentence-BERT Similarity        ↓Hybrid Score Calculation        ↓Plagiarism Result
+User Upload
+↓
+Input Processing
+↓
+OCR / PDF Text Extraction
+↓
+Text Preprocessing
+↓
+TF-IDF Similarity Analysis
+↓
+Sentence-BERT Similarity Analysis
+↓
+Hybrid Score Aggregation
+↓
+Result Generation
 
-Module Description
-Input Module
-Accepts uploaded files from the user.
-OCR Module
-Extracts text from images using Tesseract OCR.
-Preprocessing Module
-Performs:
+---
 
+## Setup Instructions
 
-Lowercase conversion
+### Install Python Dependencies
 
-
-Stopword removal
-
-
-Tokenization
-
-
-Punctuation removal
-
-
-TF-IDF Module
-Measures lexical similarity between documents.
-Sentence-BERT Module
-Measures semantic similarity between documents.
-Similarity Aggregator
-Combines TF-IDF and BERT similarity.
-
-Similarity Formula
-Final Score = (TF-IDF Score + BERT Score) / 2
-
-Verdict Thresholds
-Similarity ScoreVerdict> 70%High Plagiarism40% – 70%Moderate Similarity< 40%Low Similarity
-
-Installation
-Install required packages:
 pip install -r requirements.txt
 
-Run Project
+### Install Tesseract OCR
+
+Windows:
+Download and install from:
+[https://github.com/tesseract-ocr/tesseract](https://github.com/tesseract-ocr/tesseract)
+
+Ubuntu:
+
+sudo apt install tesseract-ocr
+
+macOS:
+
+brew install tesseract
+
+---
+
+## Usage
+
+Run the application using Streamlit:
+
 streamlit run app.py
-Open browser:
-http://localhost:8501
 
-Advantages
+Open your browser and go to:
 
+[http://localhost:8501](http://localhost:8501)
 
-Supports multiple file formats
+---
 
+## Modules
 
-Detects semantic plagiarism
+Input Module – Accepts uploaded text, image, and PDF files
+OCR Module – Extracts text from images using Tesseract
+Preprocessing Module – Cleans and prepares text
+TF-IDF Engine – Measures lexical similarity
+Sentence-BERT Engine – Measures semantic similarity
+Similarity Aggregator – Combines similarity scores
+Report Generator – Displays plagiarism results
 
+---
 
-Handles image documents
+## Verdict Thresholds
 
+≥ 65% → High Plagiarism
+35% – 64% → Moderate Similarity
+< 35% → Low Similarity
 
-User-friendly interface
+---
 
+## Graceful Degradation
 
-Fast plagiarism detection
+* If Sentence-Transformers is unavailable, the system falls back to TF-IDF similarity.
+* If Pytesseract is unavailable, image-based inputs are disabled.
+* If PyMuPDF is unavailable, PDF extraction is disabled.
+* Text-based inputs remain functional even without optional dependencies.
 
+---
 
+## Advantages
 
-Future Scope
+* Supports multiple input formats
+* Detects paraphrased plagiarism
+* Handles scanned and image documents
+* Easy-to-use web interface
+* Fast and efficient similarity comparison
 
+---
 
-PDF support
+## Future Scope
 
+* Highlight plagiarized sentences
+* Add database storage
+* AI-generated content detection
+* Cloud deployment integration
+* Advanced analytics dashboard
 
-Highlight copied text
+---
 
+## Conclusion
 
-Database integration
+This project combines OCR, TF-IDF, and Sentence-BERT to create a hybrid plagiarism detection framework.
 
-
-AI-generated text detection
-
-
-
-Conclusion
-This project combines OCR, TF-IDF, and Sentence-BERT to build a hybrid plagiarism detection framework.
-It improves plagiarism detection by supporting both textual and image-based content.
+The system improves plagiarism detection by supporting multimodal document analysis and semantic understanding.
